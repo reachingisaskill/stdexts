@@ -23,7 +23,8 @@ namespace stdexts
       static T* getInstance() { return _theInstance; }
       static void killInstance() { if ( _theInstance ) delete _theInstance; _theInstance = 0; }
 
-      virtual operator bool () { return ( _theInstance != 0 ); }
+      virtual operator bool () const { return ( _theInstance != 0 ); }
+      bool isAlive() const { return ( _theInstance != 0 ); }
   };
 
   template < class T >
