@@ -175,7 +175,7 @@ namespace stdexts
   template < class T >
   unsigned int linkedList< T >::linkItem::_count() 
   {
-    if ( this ) return _next->_count() + 1;
+    if ( this != 0 ) return _next->_count() + 1;
     else return 0; 
   }
 
