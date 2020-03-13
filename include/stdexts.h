@@ -17,5 +17,6 @@
 
 #include "stdexts_strFuncs.h"
 
+#include "stdexts_bitmap.h"
 
 #endif // __STDEXTS_H__
