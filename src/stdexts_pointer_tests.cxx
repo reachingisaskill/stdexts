@@ -16,6 +16,8 @@ void test3();
 
 void test4();
 
+autoPtr<int> get_pointer();
+
 int main( int, char** )
 {
   std::cout << "\nTesting Standard Extensions\n" << std::endl;
@@ -27,6 +29,11 @@ int main( int, char** )
   std::cout << "\n///////////////////////////////////////////////////////////\n" << std::endl;
 
   test2();
+
+  std::cout << "\n///////////////////////////////////////////////////////////\n" << std::endl;
+  std::cout << "\nTesting Move Constructor\n" << std::endl;
+
+  autoPtr<int> test_ptr = get_pointer();
 
   std::cout << "\n///////////////////////////////////////////////////////////\n" << std::endl;
   std::cout << "\n///////////////////////////////////////////////////////////\n" << std::endl;
@@ -376,5 +383,10 @@ void test4()
     std::cout << "Values of P4 : " << p4[0] << " " << p4[1] << " " << p4[2] << " " << p4[3] << " With " << p4.count() << " copies" << std::endl;
   else
     std::cout << "P4 Not Valid" << std::endl;
+}
+
+autoPtr<int> get_pointer()
+{
+  return autoPtr<int>( new int(10) );
 }
 

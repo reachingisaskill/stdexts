@@ -2,6 +2,8 @@
 #ifndef __AUTOPTR_H__
 #define __AUTOPTR_H__
 
+#include <utility>
+
 namespace stdexts
 {
 
@@ -20,6 +22,7 @@ namespace stdexts
 
       ~autoPtr();
       autoPtr( autoPtr<T>& );
+      autoPtr( autoPtr<T>&& ) noexcept;
       autoPtr<T>& operator=( autoPtr<T>& );
       autoPtr<T>& operator=( T* t ) { set(t); return *this; }
 
@@ -55,6 +58,13 @@ namespace stdexts
   template < class T >
   autoPtr<T>::autoPtr( autoPtr<T>& p ) :
     _obj( p._obj )
+  {
+    p._obj = 0;
+  }
+
+  template < class T >
+  autoPtr<T>::autoPtr( autoPtr<T>&& p ) noexcept :
+    _obj( std::move(p._obj) )
   {
     p._obj = 0;
   }
