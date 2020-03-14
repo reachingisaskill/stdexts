@@ -24,6 +24,7 @@ namespace stdexts
       autoPtr( autoPtr<T>& );
       autoPtr( autoPtr<T>&& ) noexcept;
       autoPtr<T>& operator=( autoPtr<T>& );
+      autoPtr<T>& operator=( autoPtr<T>&& );
       autoPtr<T>& operator=( T* t ) { set(t); return *this; }
 
       T* get() const { return _obj; }
@@ -64,9 +65,8 @@ namespace stdexts
 
   template < class T >
   autoPtr<T>::autoPtr( autoPtr<T>&& p ) noexcept :
-    _obj( std::move(p._obj) )
+    _obj( std::exchange( p._obj, nullptr) )
   {
-    p._obj = 0;
   }
 
   template < class T >
@@ -76,6 +76,13 @@ namespace stdexts
 
     this->_obj = p._obj;
     p._obj = 0;
+    return *this;
+  }
+
+  template < class T >
+  autoPtr<T>& autoPtr<T>::operator=( autoPtr<T>&& p )
+  {
+    this->_obj = std::exchange( p._obj, nullptr );
     return *this;
   }
 
