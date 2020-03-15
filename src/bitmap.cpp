@@ -97,9 +97,9 @@ namespace stdexts
   }
 
   bitmap::pixel::pixel( double r, double g, double b ) :
-    blue( (unsigned char)((int)b*255) ),
-    green( (unsigned char)((int)g*255) ),
-    red( (unsigned char)((int)r*255) )
+    blue( (unsigned char)(b*255) ),
+    green( (unsigned char)(g*255) ),
+    red( (unsigned char)(r*255) )
   {
   }
 }
