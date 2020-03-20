@@ -80,7 +80,8 @@ namespace stdexts
 
     for ( unsigned int i = 0; i < _height; ++i )
     {
-      fwrite( _data+(i*_width), _bytesPerPixel, _width, file );
+      unsigned int row = _height - (i+1);
+      fwrite( _data+(row*_width), _bytesPerPixel, _width, file );
       fwrite( padding, 1, _paddingSize, file );
     }
 
